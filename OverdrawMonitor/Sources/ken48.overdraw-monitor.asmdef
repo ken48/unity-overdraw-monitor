@@ -1,0 +1,6 @@
+{
+  "name": "ken48.overdraw-monitor",
+  "references": [
+    "Unity.RenderPipelines.Universal.Runtime"
+  ]
+}

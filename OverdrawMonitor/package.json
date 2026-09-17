@@ -1,0 +1,21 @@
+{
+  "name": "ken48.overdraw-monitor",
+  "displayName": "Overdraw Monitor",
+  "description": "Editor tooling for measuring URP camera and Screen Space Overlay UI overdraw.",
+  "author": {
+    "name": "ken48",
+    "url": "https://github.com/ken48"
+  },
+  "version": "1.0.0",
+  "unity": "6000.3",
+  "documentationUrl": "https://github.com/ken48/unity-overdraw-monitor",
+  "keywords": [
+    "overdraw",
+    "profiling",
+    "urp",
+    "ui"
+  ],
+  "dependencies": {
+    "com.unity.render-pipelines.universal": "17.3.0"
+  }
+}

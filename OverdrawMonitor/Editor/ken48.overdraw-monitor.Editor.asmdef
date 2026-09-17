@@ -1,0 +1,10 @@
+{
+  "name": "ken48.overdraw-monitor.Editor",
+  "references": [
+    "ken48.overdraw-monitor",
+    "Unity.RenderPipelines.Universal.Runtime"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ]
+}

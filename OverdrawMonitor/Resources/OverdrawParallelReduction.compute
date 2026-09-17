@@ -1,0 +1,39 @@
+﻿#pragma kernel CSMain
+
+#define SIZEX 32
+#define SIZEY 32
+#define GROUPSIZE (SIZEX * SIZEY)
+
+groupshared int accumulator[GROUPSIZE];
+
+Texture2D<float> Overdraw;
+RWStructuredBuffer<int> Output;
+int BufferSizeX;
+
+[numthreads(SIZEX,SIZEY,1)]
+void CSMain (uint3 gid : SV_GroupID, uint3 inp : SV_DispatchThreadID, uint gtidx : SV_GroupIndex)
+{
+    uint width, height;
+    Overdraw.GetDimensions(width, height);
+
+    // Edge groups still participate in synchronization, but out-of-range threads
+    // contribute zero to the tile sum.
+    accumulator[gtidx] = 0;
+    if (inp.x < width && inp.y < height)
+        accumulator[gtidx] = (int)(Overdraw[inp.xy].x * GROUPSIZE);
+
+    GroupMemoryBarrierWithGroupSync();
+
+    [unroll]
+    for (uint ix = GROUPSIZE >> 1; ix > 0; ix = ix >> 1)
+    {
+        if (gtidx < ix)
+            accumulator[gtidx] = (accumulator[gtidx] + accumulator[gtidx + ix]);
+        GroupMemoryBarrierWithGroupSync();
+    }
+
+    if (gtidx != 0)
+        return;
+
+    Output[gid.y * BufferSizeX + gid.x] = accumulator[0];
+}

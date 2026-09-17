@@ -1,16 +1,23 @@
-**/.DS_Store/
-**/.vs/
-**/.idea/
-**/obj/
-**/bin/
-**/Jetbrains*
+# Unity folders
+**Library/
+**Logs/
+**obj/
+**Temp/
+**UserSettings/
 
-**/Library/
-**/Temp/
-**/Build/
-**/Logs/
+# Build folders
+**[Bb]uild/
+**[Bb]uilds/
 
+# IDE folders
+**.vs/
+**.idea/
+
+# IDE files
+.vscode/settings.json
+/.vsconfig
 *.sln
 *.user
 *.csproj
 *.userprefs
+*.DotSettings
